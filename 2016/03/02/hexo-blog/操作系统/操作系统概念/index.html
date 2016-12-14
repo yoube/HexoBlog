@@ -1,0 +1,661 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="操作系统," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="分时操作系统
+实时操作系统
+批处理系统
+多道程序系统
+
+
+
+分时系统（Time-sharing System）将CPU的执行时间分成一个个的时间片（time slice），多用户中的每个用户轮转时间片，适合交互型作业
+
+Memory sharing（存储共享）+time sharing（时间共享）-&amp;gt; multiprogramming(多道系统)+interaction（交互）分时系统是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统的概念">
+<meta property="og:url" content="http://yoursite.com/2016/03/02/hexo-blog/操作系统/操作系统概念/index.html">
+<meta property="og:site_name" content="Yoube">
+<meta property="og:description" content="分时操作系统
+实时操作系统
+批处理系统
+多道程序系统
+
+
+
+分时系统（Time-sharing System）将CPU的执行时间分成一个个的时间片（time slice），多用户中的每个用户轮转时间片，适合交互型作业
+
+Memory sharing（存储共享）+time sharing（时间共享）-&amp;gt; multiprogramming(多道系统)+interaction（交互）分时系统是">
+<meta property="og:updated_time" content="2016-12-14T08:37:29.253Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统的概念">
+<meta name="twitter:description" content="分时操作系统
+实时操作系统
+批处理系统
+多道程序系统
+
+
+
+分时系统（Time-sharing System）将CPU的执行时间分成一个个的时间片（time slice），多用户中的每个用户轮转时间片，适合交互型作业
+
+Memory sharing（存储共享）+time sharing（时间共享）-&amp;gt; multiprogramming(多道系统)+interaction（交互）分时系统是">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/02/hexo-blog/操作系统/操作系统概念/"/>
+
+  <title> 操作系统的概念 | Yoube </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Yoube</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yoube.pub</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                操作系统的概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-02T17:50:01+08:00" content="2016-03-02">
+              2016-03-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<ul>
+<li><h3 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h3></li>
+<li><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3></li>
+<li><h3 id="批处理系统"><a href="#批处理系统" class="headerlink" title="批处理系统"></a>批处理系统</h3></li>
+<li><h3 id="多道程序系统"><a href="#多道程序系统" class="headerlink" title="多道程序系统"></a>多道程序系统</h3></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>分时系统</strong>（Time-sharing System）<br>将CPU的执行时间分成一个个的时间片（time slice），多用户中的每个用户轮转时间片，适合交互型作业</p>
+</blockquote>
+<p>Memory sharing（存储共享）+time sharing（时间共享）-&gt; multiprogramming(多道系统)+interaction（交互）<br>分时系统是一个通用的系统，不 限制任务的 数目和状态。<br><strong>分时的特点：</strong></p>
+<ol>
+<li>交互性强，主要为交互型作业设计；</li>
+<li>多道路性；</li>
+<li>独占性；</li>
+<li>及时性；</li>
+</ol>
+<p><strong>影响分时操作系统性能的因素：</strong></p>
+<ol>
+<li>用户数目；</li>
+<li>时间片大小；</li>
+<li>每次时间片切换是对换是数据量；</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>实时系统</strong>（Real-Time System）<br>实时系统主要用于专业系统（used in dedicated application）,有非常严格的时间要求（well-defined fixed-time constraints）。</p>
+</blockquote>
+<p>–软实时（实时Linux）<br>   一个任务能够得到有确保的处理时间，达到系统的事件也能够在截至期限到来之前来理，但违法截至期限并不会带来致命的错误。</p>
+<p>–硬实时（VxWorks等实时系统）</p>
+<p>硬实时系统指系统要有确保的最坏情况下的服务时间，即对于事件的响应时间的截止期限是无论如何都必须得到满足。</p>
+<p>   举一个经常使用的实例，中高档汽车中使用的气囊。当报告车辆碰撞的传感器中断CPU后，操作系统应快速地分配展开气囊的任务，并且不允许任何其他非实时处理进行干扰，晚一秒钟展开气囊比没有气囊的情况更糟糕，这就是一个典型的必须使用硬实时的系统。</p>
+<hr>
+<blockquote>
+<p><strong>批处理系统</strong>(Batch OS)<br>批处理系统主要用于大型系统，用于提高作业吞吐量(Throughout，单位时间内执行作业的数量)的系统。<br>批处理中基本无交互，存在两种调度： </p>
+<ol>
+<li>Job Schedule(作业调度)，即将所要做的作业放到内存上，主要负责工作的道数，属于高级调度。 </li>
+<li>CPU Schedule(进程调度)，即在内存中CPU选择执行某个工作，属于低级调度。</li>
+</ol>
+</blockquote>
+<p>进程的三个状态：就绪(Ready)，运行(Running)，等待(Waiting)／阻塞(Blocking)</p>
+<hr>
+<blockquote>
+<p> <strong>多道程序系统</strong>(Multiprogramming System)</p>
+</blockquote>
+<p>优点： </p>
+<ol>
+<li>Improve CPU utilization 2% –&gt; 100%(in theory)<br>注：但程序道数越多，系统消耗(overhead)越高，会造成CPU有效利用率降低 </li>
+<li>Improve memory and I/O device utilization. </li>
+<li>Increase system throughout.<br>特点： </li>
+<li>多道 </li>
+<li>无序(unordered)，执行是无序的，即用户不知道进程状态，但系统知道当前进程的状态 </li>
+<li>调度性(scheduling) </li>
+</ol>
+<p>缺点：<br>   交互性低</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag">#操作系统</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/02/hexo-blog/android/动画解析/" rel="prev" title="Android 动画基础">
+                Android 动画基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Wang ge" />
+          <p class="site-author-name" itemprop="name">Wang ge</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://github.com/" title="Github" target="_blank">Github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分时操作系统"><span class="nav-number">1.</span> <span class="nav-text">分时操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实时操作系统"><span class="nav-number">2.</span> <span class="nav-text">实时操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批处理系统"><span class="nav-number">3.</span> <span class="nav-text">批处理系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多道程序系统"><span class="nav-number">4.</span> <span class="nav-text">多道程序系统</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang ge</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android ndk," />
 
 
 
@@ -84,13 +84,34 @@
 
 
 
+<meta name="description" content="cmake构建脚本文档：https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
+add_library(hello-jni 
+            SHARED
+            hello-jni.c)
+
+target_link_libraries(hello-jni
+                      a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My New Page">
-<meta property="og:url" content="http://yoursite.com/2016/10/02/My-New-Page/index.html">
+<meta property="og:title" content="Android cmake 文件解析">
+<meta property="og:url" content="http://yoursite.com/2016/11/02/hexo-blog/android/cmake文件/index.html">
 <meta property="og:site_name" content="Yoube">
-<meta property="og:updated_time" content="2016-10-02T08:36:53.728Z">
+<meta property="og:description" content="cmake构建脚本文档：https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
+add_library(hello-jni 
+            SHARED
+            hello-jni.c)
+
+target_link_libraries(hello-jni
+                      a">
+<meta property="og:updated_time" content="2016-12-14T08:57:29.892Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My New Page">
+<meta name="twitter:title" content="Android cmake 文件解析">
+<meta name="twitter:description" content="cmake构建脚本文档：https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
+add_library(hello-jni 
+            SHARED
+            hello-jni.c)
+
+target_link_libraries(hello-jni
+                      a">
 
 
 
@@ -111,9 +132,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/02/My-New-Page/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/02/hexo-blog/android/cmake文件/"/>
 
-  <title> My New Page | Yoube </title>
+  <title> Android cmake 文件解析 | Yoube </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +254,7 @@
             
             
               
-                My New Page
+                Android cmake 文件解析
               
             
           </h1>
@@ -245,8 +266,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T16:36:53+08:00" content="2016-10-02">
-              2016-10-02
+            <time itemprop="dateCreated" datetime="2016-11-02T14:20:21+08:00" content="2016-11-02">
+              2016-11-02
             </time>
           </span>
 
@@ -273,7 +294,23 @@
       
 
       
-        
+        <p>cmake构建脚本文档：<a href="https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html" target="_blank" rel="external">https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html</a></p>
+<pre><code>add_library(hello-jni 
+            SHARED
+            hello-jni.c)
+
+target_link_libraries(hello-jni
+                      android
+                      log)
+</code></pre><p>add_library</p>
+<pre><code>add_library( //向构建脚本添加源文件或库        
+    hello-jni //表示模块名称,（用于生成.so库文件名称：lib*[库名称]*.so）
+    SHARED //表示共享库 有这几个选项  [STATIC | SHARED | MODULE]
+    [EXCLUDE_FROM_ALL]
+    hello-jni.c //表示文件的路径
+    source2 ...
+)` 
+</code></pre>
       
     </div>
 
@@ -293,18 +330,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android-ndk/" rel="tag">#Android ndk</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/06/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/09/02/hexo-blog/android/技术拓展/" rel="next" title="Apk管理">
+                <i class="fa fa-chevron-left"></i> Apk管理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/12/hexo-blog/android/android7.0/" rel="prev" title="Android 7.0 特性">
+                Android 7.0 特性 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -372,13 +419,20 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

@@ -235,8 +235,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/02/My-New-Page/" itemprop="url">
-                  My New Page
+                <a class="post-title-link" href="/2016/12/12/hexo-blog/android/android7.0/" itemprop="url">
+                  Android 7.0 特性
                 </a>
               
             
@@ -249,8 +249,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T16:36:53+08:00" content="2016-10-02">
-              2016-10-02
+            <time itemprop="dateCreated" datetime="2016-12-12T16:36:53+08:00" content="2016-12-12">
+              2016-12-12
             </time>
           </span>
 
@@ -279,7 +279,49 @@
       
         
           
-            
+            <h2 id="FileProvider"><a href="#FileProvider" class="headerlink" title="FileProvider"></a>FileProvider</h2><p>在Android7.0过后 应用之间 Activity之间传递File路径的时候需要提供权限：<br>需要申明一个Provider来提供<code>content://</code>的uri格式； </p>
+<blockquote>
+<p>申明一个FileProvider</p>
+</blockquote>
+<pre><code>&lt;manifest&gt;
+...
+&lt;application&gt;
+    ...
+    &lt;provider
+        android:name=&quot;android.support.v4.content.FileProvider&quot;
+        android:authorities=&quot;com.mydomain.fileprovider&quot;//唯一标识符
+        android:exported=&quot;false&quot;
+        android:grantUriPermissions=&quot;true&quot;&gt;
+        &lt;meta-data
+            android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;
+            android:resource=&quot;@xml/file_paths&quot; /&gt;//配置提供文件的路径
+    &lt;/provider&gt;
+    ...
+&lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre><blockquote>
+<p>file_paths 路径的配置</p>
+</blockquote>
+<pre><code>&lt;paths xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;files-path name=&quot;my_images&quot; path=&quot;images/&quot;/&gt;
+    ...
+&lt;/paths&gt;
+</code></pre><p>路径可配置</p>
+<pre><code>&lt;files-path name=&quot;name&quot; path=&quot;path&quot; /&gt;
+</code></pre><p>返回的是类似于： Context.getFilesDir().</p>
+<pre><code>&lt;cache-path name=&quot;name&quot; path=&quot;path&quot; /&gt;
+</code></pre><p>返回的是类似于： getCacheDir().</p>
+<pre><code>&lt;external-path name=&quot;name&quot; path=&quot;path&quot; /&gt;
+</code></pre><p>返回的是类似于： Environment.getExternalStorageDirectory().</p>
+<pre><code>&lt;external-files-path name=&quot;name&quot; path=&quot;path&quot; /&gt;
+</code></pre><p>返回的是类似于： Context#getExternalFilesDir(String) Context.getExternalFilesDir(null).</p>
+<pre><code>&lt;external-cache-path name=&quot;name&quot; path=&quot;path&quot; /&gt;    
+</code></pre><p>返回的是类似于：Context.getExternalCacheDir().</p>
+<blockquote>
+<p>还有一个<code>root-path</code> 如果文件在外置的SD卡下应该配置这个：</p>
+</blockquote>
+<pre><code>&lt;root-path  name=&quot;name&quot; path=&quot;path&quot; /&gt;    
+</code></pre>
           
         
       
@@ -328,8 +370,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/06/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/11/02/hexo-blog/android/cmake文件/" itemprop="url">
+                  Android cmake 文件解析
                 </a>
               
             
@@ -342,8 +384,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-06T10:47:03+08:00" content="2016-08-06">
-              2016-08-06
+            <time itemprop="dateCreated" datetime="2016-11-02T14:20:21+08:00" content="2016-11-02">
+              2016-11-02
             </time>
           </span>
 
@@ -372,15 +414,941 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>cmake构建脚本文档：<a href="https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html" target="_blank" rel="external">https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html</a></p>
+<pre><code>add_library(hello-jni 
+            SHARED
+            hello-jni.c)
+
+target_link_libraries(hello-jni
+                      android
+                      log)
+</code></pre><p>add_library</p>
+<pre><code>add_library( //向构建脚本添加源文件或库        
+    hello-jni //表示模块名称,（用于生成.so库文件名称：lib*[库名称]*.so）
+    SHARED //表示共享库 有这几个选项  [STATIC | SHARED | MODULE]
+    [EXCLUDE_FROM_ALL]
+    hello-jni.c //表示文件的路径
+    source2 ...
+)` 
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/02/hexo-blog/android/技术拓展/" itemprop="url">
+                  Apk管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-02T11:26:33+08:00" content="2016-09-02">
+              2016-09-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>Binder<ul>
+<li>学习AIDL binder</li>
+</ul>
+</li>
+<li><p>App打包流程</p>
+</li>
+<li><p>App安装流程</p>
+<ul>
+<li>app下载到本地之后，放到哪个目录下，然后会产生什么文件  “增量更新”</li>
+<li><p>安装流程</p>
+<ul>
+<li><p>第一步：</p>
+<ul>
+<li>将apk文件复制到程序目录下（/data/app/）</li>
+<li>验证签名</li>
+</ul>
+</li>
+<li><p>第二步：</p>
+<ul>
+<li>为应用创建数据目录（/data/data/package name/）</li>
+<li>提取dex文件到指定目录（/data/dalvik-cache/）</li>
+<li>修改系统包管理信息。注意，本文的分析基于Android 4.3源码。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>App启动过程<ul>
+<li>Activity启动有几种方式？<ul>
+<li>写一个startActivity</li>
+<li>Launcher机制，启动默认的Activity。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>资源加载机制</li>
+<li>Gradle</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/13/hexo-blog/java/RADME/" itemprop="url">
+                  java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T01:26:10+08:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="./java数据加密.html" title="java数据加密">java数据加密</a> </li>
+<li><a href="./java数据加密.html" title="java数据加密">java多线程</a>  </li>
+<li><a href="./java数据加密.html" title="java数据加密">java技术拓展</a> </li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/13/hexo-blog/java/java数据加密/" itemprop="url">
+                  java 数据加密
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T01:26:10+08:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><strong>Base64算法</strong></li>
+<li><p><strong>消息摘要算法</strong></p>
+</li>
+<li><p><strong>对称加密</strong></p>
+<ol>
+<li>DES</li>
+<li>AES</li>
+</ol>
+</li>
+<li><strong>非对称加密</strong></li>
+</ol>
+<hr>
+<p>###Base64</p>
+<ul>
+<li>概述<ul>
+<li><strong>java中加解密的包有</strong>：<ul>
+<li>java.security : -消息摘要</li>
+<li>javax.crypto  : -安全消息摘要，消息认证码</li>
+<li>java.net.ssl    : -安全套接字</li>
+</ul>
+</li>
+<li><strong>Bouncy Castle</strong> 第三方扩展加解密包 （可以配置和调用）</li>
+<li><strong>Commons Codec</strong> (Apache提供)<ul>
+<li>Base64 , 二进制 十六进制，字符集 编码</li>
+<li>URL编辑 ，URL解码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实现</p>
+<blockquote>
+<p>JDK 实现Base64</p>
+</blockquote>
+<pre><code>/**    
+ * JDK 实现Base64编码
+ * @param src
+ * @return
+ */
+public static String jdkBase64Encode(String src){
+    String result = null;
+    BASE64Encoder base64Encoder = new BASE64Encoder();
+    result = base64Encoder.encode(src.getBytes());
+    return result ;
+}
+
+/**
+ * JDK 实现Base64解码
+ * @param code
+ * @return
+ * @throws IOException 
+ */
+public static String jdkBase64Decode(String code) throws IOException{
+    BASE64Decoder decoder  = new BASE64Decoder();
+    byte[] bytes = decoder.decodeBuffer(code);
+    return new String(bytes);
+}
+</code></pre><blockquote>
+<p>Commons-Codec 实现</p>
+</blockquote>
+<pre><code>/**
+ * CommonsCodec 实现Base64编码
+ * @param src
+ * @return
+ */
+public static String commonsCodecBase64Encode(String src){
+    byte[] bytes = Base64.encodeBase64(src.getBytes());
+    return new String(bytes) ;
+}
+/**
+ * CommonsCodec 实现Base64解码
+ * @param code
+ * @return
+ */
+public static String commonsCodecBase64Decode(String code){
+    byte[] bytes = Base64.decodeBase64(code.getBytes());
+    return new String(bytes) ;
+}
+</code></pre><blockquote>
+<p>Buncy Castle 实现    </p>
+</blockquote>
+<pre><code>/**
+ * Bouncy Castle 实现Base64编码
+ * @param src
+ * @return
+ */
+public static String bcBase64Encode(String src){
+    byte[] bytes = org.bouncycastle.util.encoders.Base64.encode(src.getBytes());
+    return new String(bytes) ;
+}
+/**
+ * Bouncy Castle 实现Base64解码
+ * @param src
+ * @return
+ */
+public static String bcBase64Decode(String src){
+    byte[] bytes = org.bouncycastle.util.encoders.Base64.decode(src.getBytes());
+    return new String(bytes) ;
+}
+</code></pre></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/13/hexo-blog/java/技术拓展/" itemprop="url">
+                  技术拓展
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T01:26:10+08:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>android </li>
+<li>rxJava  </li>
+<li>kotlin  </li>
+<li>scala </li>
+<li>play j2ee </li>
+<li><p>java      </p>
+<pre><code> public static String SHA(String decript) {
+       try {
+MessageDigest digest = java.security.MessageDigest
+                .getInstance(&quot;SHA&quot;);
+        digest.update(decript.getBytes());
+        byte messageDigest[] = digest.digest();
+        // Create Hex String
+        StringBuffer hexString = new StringBuffer();
+        // 字节数组转换为 十六进制 数
+        for (int i = 0; i &lt; messageDigest.length; i++) {
+            String shaHex = Integer.toHexString(messageDigest[i] &amp; 0xFF);
+            if (shaHex.length() &lt; 2) {
+                hexString.append(0);
+            }
+            hexString.append(shaHex);
+        }
+        return hexString.toString();
+
+    } catch (NoSuchAlgorithmException e) {
+        e.printStackTrace();
+    }
+    return &quot;&quot;;
+}
+</code></pre></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/03/hexo-blog/android/ndk构建基础/" itemprop="url">
+                  Android NDK 环境构建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-03T09:34:31+08:00" content="2016-07-03">
+              2016-07-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.首先在build.gradle配置NDK模块的声明来激活c++ / NDK支持</p>
+<pre><code>android {
+defaultConfig {
+    ...
+    externalNativeBuild {
+        cmake {
+            cppFlags &quot;&quot;
+        }// ndkBuild {...}
+    }
+    ndk{
+        abiFilters &apos;x86&apos;,&apos;x86_64&apos;,&apos;armeabi&apos;,&apos;armeabi-v7a&apos;,&apos;arm64-v8a&apos;
+    }
+}
+    externalNativeBuild {
+    cmake {
+        path &quot;CMakeLists.txt&quot;
+    }
+
+}
+</code></pre><p>ndk构建可以使用ndk-build 或者 在android studio 2.2 中使用cmake 构建工具构建</p>
+<pre><code>- ndk-build 需要写android.mk和application.mk构建脚本文件
+- cmake 构建需要写 cmakeLists.txt 构建脚本      
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/02/hexo-blog/android/动画解析/" itemprop="url">
+                  Android 动画基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-02T14:23:12+08:00" content="2016-07-02">
+              2016-07-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>动画的分类</p>
+<ol>
+<li>Tween Animation 补间动画 （变化动画）<br> 可以使View进行四种状态的转变，具有一下属性可选择：<br> Duration         动画的持续时间（毫秒）<br> fillAfter         动画在动画结束后被应用<br> filBefore         动画在动画开始前被应用<br> interpolator     动画的插入器（可实现动画的加速或减速运行）<br> repeatCount     动画的重复次数<br> startOffset 动画的播放间隔<br> 四种状态：<ol>
+<li>Alpha 渐变透明度动画</li>
+<li>Scale 渐变尺寸动画</li>
+<li>Translate 位移动画</li>
+<li>Rotate 旋转动画</li>
+</ol>
+</li>
+<li>Frame Animation 帧动画</li>
+<li>Layout Animation 布局动画</li>
+<li>Property Animation 属性动画</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/02/hexo-blog/操作系统/操作系统概念/" itemprop="url">
+                  操作系统的概念
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-02T17:50:01+08:00" content="2016-03-02">
+              2016-03-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<ul>
+<li><h3 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h3></li>
+<li><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3></li>
+<li><h3 id="批处理系统"><a href="#批处理系统" class="headerlink" title="批处理系统"></a>批处理系统</h3></li>
+<li><h3 id="多道程序系统"><a href="#多道程序系统" class="headerlink" title="多道程序系统"></a>多道程序系统</h3></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>分时系统</strong>（Time-sharing System）<br>将CPU的执行时间分成一个个的时间片（time slice），多用户中的每个用户轮转时间片，适合交互型作业</p>
+</blockquote>
+<p>Memory sharing（存储共享）+time sharing（时间共享）-&gt; multiprogramming(多道系统)+interaction（交互）<br>分时系统是一个通用的系统，不 限制任务的 数目和状态。<br><strong>分时的特点：</strong></p>
+<ol>
+<li>交互性强，主要为交互型作业设计；</li>
+<li>多道路性；</li>
+<li>独占性；</li>
+<li>及时性；</li>
+</ol>
+<p><strong>影响分时操作系统性能的因素：</strong></p>
+<ol>
+<li>用户数目；</li>
+<li>时间片大小；</li>
+<li>每次时间片切换是对换是数据量；</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>实时系统</strong>（Real-Time System）<br>实时系统主要用于专业系统（used in dedicated application）,有非常严格的时间要求（well-defined fixed-time constraints）。</p>
+</blockquote>
+<p>–软实时（实时Linux）<br>   一个任务能够得到有确保的处理时间，达到系统的事件也能够在截至期限到来之前来理，但违法截至期限并不会带来致命的错误。</p>
+<p>–硬实时（VxWorks等实时系统）</p>
+<p>硬实时系统指系统要有确保的最坏情况下的服务时间，即对于事件的响应时间的截止期限是无论如何都必须得到满足。</p>
+<p>   举一个经常使用的实例，中高档汽车中使用的气囊。当报告车辆碰撞的传感器中断CPU后，操作系统应快速地分配展开气囊的任务，并且不允许任何其他非实时处理进行干扰，晚一秒钟展开气囊比没有气囊的情况更糟糕，这就是一个典型的必须使用硬实时的系统。</p>
+<hr>
+<blockquote>
+<p><strong>批处理系统</strong>(Batch OS)<br>批处理系统主要用于大型系统，用于提高作业吞吐量(Throughout，单位时间内执行作业的数量)的系统。<br>批处理中基本无交互，存在两种调度： </p>
+<ol>
+<li>Job Schedule(作业调度)，即将所要做的作业放到内存上，主要负责工作的道数，属于高级调度。 </li>
+<li>CPU Schedule(进程调度)，即在内存中CPU选择执行某个工作，属于低级调度。</li>
+</ol>
+</blockquote>
+<p>进程的三个状态：就绪(Ready)，运行(Running)，等待(Waiting)／阻塞(Blocking)</p>
+<hr>
+<blockquote>
+<p> <strong>多道程序系统</strong>(Multiprogramming System)</p>
+</blockquote>
+<p>优点： </p>
+<ol>
+<li>Improve CPU utilization 2% –&gt; 100%(in theory)<br>注：但程序道数越多，系统消耗(overhead)越高，会造成CPU有效利用率降低 </li>
+<li>Improve memory and I/O device utilization. </li>
+<li>Increase system throughout.<br>特点： </li>
+<li>多道 </li>
+<li>无序(unordered)，执行是无序的，即用户不知道进程状态，但系统知道当前进程的状态 </li>
+<li>调度性(scheduling) </li>
+</ol>
+<p>缺点：<br>   交互性低</p>
 
           
         
@@ -450,13 +1418,20 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
